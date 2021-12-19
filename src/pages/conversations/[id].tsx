@@ -9,7 +9,7 @@ export default function Conversation() {
   const { entities } = useSelector((state: RootState) => state.messages);
   const { query } = useRouter();
 
-  const conversations = useMemo(() => Object.values(entities), [entities]);
+  const messages = useMemo(() => Object.values(entities), [entities]);
 
   useEffect(() => {
     dispatch(getAllMessages(Number(query.id)));
@@ -17,8 +17,8 @@ export default function Conversation() {
 
   return (
     <div id="messages">
-      {conversations.length > 0 ? (
-        conversations.map((message) => (
+      {messages.length > 0 ? (
+        messages.map((message) => (
           <div className="message" key={message.id}>
             <p>{message.body}</p>
             <p>{message.timestamp}</p>
