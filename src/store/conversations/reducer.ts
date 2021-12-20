@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { getAllConversations } from './thunks';
+import { addNew, getAllConversations } from './thunks';
 
 const conversationAdapter = createEntityAdapter<Conversation>({
   sortComparer: (a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp,
@@ -15,6 +15,8 @@ const conversationsSlice = createSlice({
       // TODO: handle error
       console.log('Error in getAllConversation()', action.error)
     });
+
+    builder.addCase(addNew.fulfilled, conversationAdapter.addOne);
   }
 })
 

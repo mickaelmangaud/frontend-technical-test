@@ -27,6 +27,9 @@ export default function Conversation() {
       ) : (
         <p>Aucun message dans cette conversation</p>
       )}
+
+      <input type="text" />
+      <button>Send Message</button>
     </div>
   );
 }

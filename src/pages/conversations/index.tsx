@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store';
 import { getAllConversations } from '../../store/conversations/thunks';
 import { getAllUsers } from '../../store/users/thunks';
+import { toggleUsersDisplayed } from '../../store/app'
 
 export default function Conversations() {
   const dispatch = useAppDispatch();
@@ -12,15 +13,15 @@ export default function Conversations() {
   const { entities } = useSelector((state: RootState) => state.conversations);
 
   const conversations = useMemo(() => Object.values(entities), [entities]);
-
   const goToConversation = (conversationId) => router.push(`/conversations/${conversationId}`);
+  const toggleContactList = () => dispatch(toggleUsersDisplayed({}));
 
   useEffect(() => {
     dispatch(getAllConversations(user.id));
     dispatch(getAllUsers());
   }, []);
 
-  return (
+  return (  
     <div>
       {conversations.length > 0 ? (
         conversations.map((conversation: Conversation) => (
@@ -30,12 +31,14 @@ export default function Conversations() {
             onClick={() => goToConversation(conversation.id)}
           >
             <p>Last message: {conversation.lastMessageTimestamp}</p>
-            <p>Contact: {conversation.senderNickname}</p>
+            <p>Contact: {conversation.senderNickname === user.nickname ? conversation.recipientNickname : conversation.senderNickname}</p>
           </div>
         ))
       ) : (
         <p>Aucune conversation</p>
       )}
+
+      <button onClick={toggleContactList}>New conversation</button>
     </div>
   );
 }
