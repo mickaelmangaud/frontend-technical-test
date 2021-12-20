@@ -1,12 +1,10 @@
-import router, { useRouter } from 'next/router';
 import { useEffect, useMemo, useState, useRef } from 'react';
+import router, { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { ScreenWrapper } from '../../components/ScreenWrapper';
+import { Message, NewMessage } from '../../components/';
 import { RootState, useAppDispatch } from '../../store';
 import { getAllMessages, addMessage } from '../../store/messages/thunks';
 import { format } from 'date-fns';
-import { Message } from '../../components/Message';
-import { NewMessage } from '../../components/NewMessage';
 
 const AlwaysScrollToBottom = () => {
   const elementRef = useRef(null);
@@ -52,7 +50,7 @@ export default function Conversation() {
     return ''
   }, [messages])
 
-  const goToConversations = () => router.push('/conversations')
+  const goToConversations = () => router.push('/')
 
   const getMessageDate = (timestamp: number) => 
     format(new Date(timestamp), 'dd/MM/yyyy à HH:mm:ss');
@@ -62,40 +60,38 @@ export default function Conversation() {
   }, [query]);
 
   return (
-    <ScreenWrapper>
-      <div id="conversation">
-        <div className="header">
-          <div className="back" onClick={goToConversations}>
-            &lt;
-          </div>
-          <div className="with">
-            <p>Conversation avec {getFriend}</p>
-          </div>
+    <div id="conversation">
+      <div className="header">
+        <div className="back" onClick={goToConversations}>
+          &lt;
         </div>
-
-        <div className="messages">
-          {messages.length > 0 ? (
-            messages.map((message) => (
-              <Message 
-                key={message.id}
-                user={user}
-                message={message}
-                getMessageDate={getMessageDate}
-                getSender={getSender}
-              />
-              ))
-              ) : (
-                <p>Aucun message dans cette conversation</p>
-              )}
-            <AlwaysScrollToBottom />
+        <div className="with">
+          <p>Conversation avec {getFriend}</p>
         </div>
-
-        <NewMessage
-          addMessageToConversation={addMessageToConversation}
-          newMessage={newMessage}
-          setNewMessage={setNewMessage}
-        />
       </div>
-    </ScreenWrapper>
+
+      <div className="messages">
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <Message 
+              key={message.id}
+              user={user}
+              message={message}
+              getMessageDate={getMessageDate}
+              getSender={getSender}
+            />
+            ))
+            ) : (
+              <p>Aucun message dans cette conversation</p>
+            )}
+          <AlwaysScrollToBottom />
+      </div>
+
+      <NewMessage
+        addMessageToConversation={addMessageToConversation}
+        newMessage={newMessage}
+        setNewMessage={setNewMessage}
+      />
+    </div>
   );
 }

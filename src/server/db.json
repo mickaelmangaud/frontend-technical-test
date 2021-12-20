@@ -175,6 +175,46 @@
       "recipientId": 3,
       "recipientNickname": "Patrick",
       "lastMessageTimestamp": null
+    },
+    {
+      "id": 1640034344926,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": null
+    },
+    {
+      "id": 1640034515528,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": null
+    },
+    {
+      "id": 1640034623940,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": null
+    },
+    {
+      "id": 1640034641524,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": null
+    },
+    {
+      "id": 1640034773491,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": null
     }
   ],
   "messages": [
