@@ -1,7 +1,7 @@
+import { useRouter } from "next/router"
+
 export default function Home() {
-  return (
-    <div id="home">
-      Test
-    </div>
-  )
+  const router = useRouter()
+  router.push('/conversations')
+  return null
 }

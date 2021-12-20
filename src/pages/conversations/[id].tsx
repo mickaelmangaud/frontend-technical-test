@@ -30,21 +30,26 @@ export default function Conversation() {
   
   const addMessageToConversation = (e) => {
     e.preventDefault();
-    const newMessageId = Date.now();
-    dispatch(addMessage({
-      id: newMessageId,
-      conversationId: Number(query.id),
-      authorId: user.id,
-      timestamp: Date.now(),
-      body: newMessage
-    }));
+    if (newMessage !== '') {
+      const newMessageId = Date.now();
+      dispatch(addMessage({
+        id: newMessageId,
+        conversationId: Number(query.id),
+        authorId: user.id,
+        timestamp: Date.now(),
+        body: newMessage
+      }));
+    }
   }
 
   const getFriend: string = useMemo(() => {
     const conv: Conversation = conversations[Number(query.id)];
-    return conv.recipientNickname === user.nickname 
+    if (conv) {
+      return conv.recipientNickname === user.nickname 
       ? conv.senderNickname 
       : conv.recipientNickname;
+    }
+    return ''
   }, [messages])
 
   const goToConversations = () => router.push('/conversations')
@@ -69,7 +74,6 @@ export default function Conversation() {
         </div>
 
         <div className="messages">
-          
           {messages.length > 0 ? (
             messages.map((message) => (
               <Message 
@@ -82,7 +86,7 @@ export default function Conversation() {
               ))
               ) : (
                 <p>Aucun message dans cette conversation</p>
-                )}
+              )}
             <AlwaysScrollToBottom />
         </div>
 

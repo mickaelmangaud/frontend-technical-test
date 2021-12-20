@@ -15,11 +15,11 @@
     align-items: center;
     height: 80px;
     padding: 0 24px;
-    border-bottom: 1px solid #ff6e14;
+    border-bottom: 1px solid $leboncoinOrange;
 
     .back {
       cursor: pointer;
-      background-color: #ff6e14;
+      background-color: $leboncoinOrange;
       width: 48px;
       height: 48px;
       border-radius: 50%;
@@ -32,7 +32,7 @@
 
     .with {
       font-size: 30px;
-      color: #ff6e14;
+      color: $leboncoinOrange;
     }
   }
 
