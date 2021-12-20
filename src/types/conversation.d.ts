@@ -4,5 +4,5 @@ interface Conversation {
   recipientNickname: string
   senderId: number
   senderNickname: string
-  lastMessageTimestamp: number;
+  lastMessageTimestamp: number | null;
 }

@@ -10,23 +10,27 @@ export function Users() {
   const dispatch = useAppDispatch();
   const { entities } = useSelector((state: RootState) => state.users);
   const { areUsersDisplayed } = useSelector((state: RootState) => state.app);   
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user: currentUser } = useSelector((state: RootState) => state.auth);
 
-  const users: User[] = useMemo(() => Object.values(entities), []);
+  const users: User[] = useMemo(
+    () => Object.values(entities),
+    [entities]
+  );
+
+  const toggleUsersAreDisplayed = () => dispatch(toggleUsersDisplayed({}));
 
   const addConversation = async (userId) => {
-    await dispatch(toggleUsersDisplayed({}))
+    toggleUsersAreDisplayed()
 
     const newConversationId = Date.now();
-
     await dispatch(addNew({
       id: newConversationId,
-      senderId: user.id,
-      senderNickname: user.nickname,
+      senderId: currentUser.id,
+      senderNickname: currentUser.nickname,
       recipientId: userId,
       recipientNickname: users.find(user => user.id === userId).nickname,
-      lastMessageTimestamp: Date.now()
-    }))
+      lastMessageTimestamp: null,
+    }));
 
     router.push(`/conversations/${newConversationId}`);
   }
@@ -37,8 +41,14 @@ export function Users() {
 
   return (
     <div id="users" className={`${areUsersDisplayed && 'displayed'}`}>
+      <div
+        className="close"
+        onClick={toggleUsersAreDisplayed}
+      >
+        X
+      </div>
       {users.length > 0 ? 
-          users.map(user => (
+          users.map(user => user.id !== currentUser.id && (
             <div
               className="user"
               key={user.id}

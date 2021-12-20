@@ -5,6 +5,9 @@ import { RootState, useAppDispatch } from '../../store';
 import { getAllConversations } from '../../store/conversations/thunks';
 import { getAllUsers } from '../../store/users/thunks';
 import { toggleUsersDisplayed } from '../../store/app'
+import { Users } from '../../components/Users';
+import { ScreenWrapper } from '../../components/ScreenWrapper';
+import { ConversationCard } from '../../components/ConversationCard';
 
 export default function Conversations() {
   const dispatch = useAppDispatch();
@@ -12,9 +15,14 @@ export default function Conversations() {
   const { user } = useSelector((state: RootState) => state.auth);
   const { entities } = useSelector((state: RootState) => state.conversations);
 
-  const conversations = useMemo(() => Object.values(entities), [entities]);
-  const goToConversation = (conversationId) => router.push(`/conversations/${conversationId}`);
-  const toggleContactList = () => dispatch(toggleUsersDisplayed({}));
+  const conversations =
+    useMemo(() => Object.values(entities), [entities]);
+
+  const goToConversation =
+    (conversationId) => router.push(`/conversations/${conversationId}`);
+  
+  const toggleContactList = () =>
+    dispatch(toggleUsersDisplayed({}));
 
   useEffect(() => {
     dispatch(getAllConversations(user.id));
@@ -22,23 +30,30 @@ export default function Conversations() {
   }, []);
 
   return (  
-    <div>
-      {conversations.length > 0 ? (
-        conversations.map((conversation: Conversation) => (
-          <div
-            key={conversation.id}
-            className="conversation"
-            onClick={() => goToConversation(conversation.id)}
-          >
-            <p>Last message: {conversation.lastMessageTimestamp}</p>
-            <p>Contact: {conversation.senderNickname === user.nickname ? conversation.recipientNickname : conversation.senderNickname}</p>
-          </div>
-        ))
-      ) : (
-        <p>Aucune conversation</p>
-      )}
-
-      <button onClick={toggleContactList}>New conversation</button>
-    </div>
+    <ScreenWrapper>
+      <div id="conversations">
+        <button
+          className="new-conversation-btn"
+          onClick={toggleContactList}
+        >
+          <p>New Conversation</p>
+        </button>
+        <div className="conversations-list">
+          {conversations.length > 0 ? (
+            conversations.map((conversation: Conversation) => (
+              <ConversationCard
+                key={conversation.id}
+                onClick={() => goToConversation(conversation.id)}
+                user={user}
+                conversation={conversation}
+              />
+            ))
+          ) : (
+            <p>Aucune conversation</p>
+        )}
+        </div>
+      <Users />
+      </div>  
+    </ScreenWrapper>
   );
 }

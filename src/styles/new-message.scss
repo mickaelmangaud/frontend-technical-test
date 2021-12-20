@@ -1,0 +1,27 @@
+#new-message {
+  height: 100px;
+  flex: 1;
+  display: flex;
+  border-top: 1px solid #ff6e14;
+
+  input {
+    flex: 1;
+    height: 100%;
+    outline: none;
+    padding: 0 24px;
+    border: none;
+  }
+
+  button {
+    height: 100%;
+    width: 200px;
+    background-color: #ff6e14;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba(#ff6e14, 0.9);
+    }
+  }
+}

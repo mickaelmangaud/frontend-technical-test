@@ -1,0 +1,49 @@
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+#conversations {
+  width: 100%;
+  padding: 24px;
+  animation: fade .3s ease;
+
+  .conversations-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+
+    .conversation {
+      background-color: white;
+      margin-bottom: 24px;
+      padding: 20px;
+      box-shadow: 0 -1px 4px 0 rgb(26 26 26 / 8%), 0 4px 8px 0 rgb(26 26 26 / 12%);
+      transition: all .3s ease;
+      &:hover {
+        transform: scale(1.02);
+      }
+  
+    }
+  }
+
+  .new-conversation-btn {
+    z-index: 4;
+    position: fixed;
+    right: 24px;
+    top: 24px;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #ff6e14;
+    transition: all .3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    p {
+      color: white;
+      font-weight: bold;
+    }
+  }
+}

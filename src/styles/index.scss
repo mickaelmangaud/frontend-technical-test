@@ -1,13 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 html, body, #__next {
-  min-width: 100vh;
+  min-height: 100vh;
 }
 
+@import 'mixins';
 @import 'layout';
 @import 'home';
 @import 'users';
+@import 'conversation';
+@import 'conversations';
+@import 'screen-wrapper';
+@import 'message';
+@import 'new-message';

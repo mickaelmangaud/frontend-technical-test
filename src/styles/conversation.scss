@@ -1,0 +1,52 @@
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#conversation {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 24px;
+    border-bottom: 1px solid #ff6e14;
+
+    .back {
+      cursor: pointer;
+      background-color: #ff6e14;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 -1px 4px 0 rgb(26 26 26 / 8%), 0 4px 8px 0 rgb(26 26 26 / 12%);
+    }
+
+    .with {
+      font-size: 30px;
+      color: #ff6e14;
+    }
+  }
+
+  .messages {
+    flex: 10;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background-color: #FAFAFA;
+
+    @include maxWidth(768px) {
+      display: initial;
+    }
+  }
+}
