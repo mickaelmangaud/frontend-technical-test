@@ -17,11 +17,11 @@ export function Users() {
     [entities]
   );
 
-  const toggleUsersAreDisplayed = () => dispatch(toggleUsersDisplayed({}));
+  const toggleUsersAreDisplayed = () => 
+    dispatch(toggleUsersDisplayed({}));
 
-  const addConversation = async (userId) => {
-    toggleUsersAreDisplayed()
-
+  const addConversation = async (userId: number) => {
+    toggleUsersAreDisplayed();
     const newConversationId = Date.now();
     await dispatch(addNew({
       id: newConversationId,
@@ -29,9 +29,8 @@ export function Users() {
       senderNickname: currentUser.nickname,
       recipientId: userId,
       recipientNickname: users.find(user => user.id === userId).nickname,
-      lastMessageTimestamp: null,
+      lastMessageTimestamp: newConversationId,
     }));
-
     router.push(`/conversations/${newConversationId}`);
   }
 
@@ -43,20 +42,18 @@ export function Users() {
     <div id="users" className={`${areUsersDisplayed && 'displayed'}`}>
       <div
         className="close"
-        onClick={toggleUsersAreDisplayed}
-      >
+        onClick={toggleUsersAreDisplayed}>
         X
       </div>
-      {users.length > 0 ? 
-          users.map(user => user.id !== currentUser.id && (
-            <div
-              className="user"
-              key={user.id}
-              onClick={() => addConversation(user.id)}
-            >
-              <p>{user.nickname}</p>
-            </div>
-          )
+      {users.length ? 
+        users.map(user => user.id !== currentUser?.id && (
+          <div
+            className="user"
+            key={user.id}
+            onClick={() => addConversation(user.id)}>
+            <p>{user.nickname}</p>
+          </div>
+        )
       ) : (
         <p>Aucun utilisateur</p>
       )}

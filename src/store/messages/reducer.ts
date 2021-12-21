@@ -20,7 +20,7 @@ const messagesSlice = createSlice({
     /* post */
     builder.addCase(addMessage.fulfilled, messageAdapter.setOne);
     builder.addCase(addMessage.rejected, (state, action) => {
-      console.log('action')
+      console.log('action');
     })
   }
 })

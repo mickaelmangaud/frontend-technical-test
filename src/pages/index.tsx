@@ -5,8 +5,7 @@ import { RootState, useAppDispatch } from '../store';
 import { getAllConversations } from '../store/conversations/thunks';
 import { getAllUsers } from '../store/users/thunks';
 import { toggleUsersDisplayed } from '../store/app'
-import { Users } from '../components/Users';
-import { ConversationCard } from '../components';
+import { ConversationList, Logout, NewConversationBtn, Users } from '../components';
 
 export default function Conversations() {
   const dispatch = useAppDispatch();
@@ -14,43 +13,36 @@ export default function Conversations() {
   const { user } = useSelector((state: RootState) => state.auth);
   const { entities } = useSelector((state: RootState) => state.conversations);
 
-  const conversations =
-    useMemo(() => Object.values(entities), [entities]);
+  console.log(Object.values(entities).sort((a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp))
 
-  const goToConversation =
-    (conversationId) => router.push(`/conversations/${conversationId}`);
-  
+  const conversations = useMemo(
+    () => Object.values(entities).sort((a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp),
+    [entities]
+  );
+
   const toggleContactList = () =>
     dispatch(toggleUsersDisplayed({}));
 
+  const goToConversation = (conversationId: number) =>
+    router.push(`/conversations/${conversationId}`);
+
   useEffect(() => {
-    dispatch(getAllConversations(user.id));
+    dispatch(getAllConversations(user?.id));
     dispatch(getAllUsers());
   }, []);
 
   return (  
     <div id="conversations">
-      <button
-        className="new-conversation-btn"
-        onClick={toggleContactList}
-      >
-        <p>New Conversation</p>
-      </button>
-      <div className="conversations-list">
-        {conversations.length > 0 ? (
-          conversations.map((conversation: Conversation) => (
-            <ConversationCard
-              key={conversation.id}
-              onClick={() => goToConversation(conversation.id)}
-              user={user}
-              conversation={conversation}
-            />
-          ))
-        ) : (
-          <p>Aucune conversation</p>
-      )}
-      </div>
-    <Users />
+      <Logout />
+      <NewConversationBtn 
+        toggleContactList={toggleContactList}
+      />
+      <ConversationList
+        conversations={conversations}
+        user={user}
+        goToConversation={goToConversation}
+      />    
+      <Users />
     </div>  
   );
 }

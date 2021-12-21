@@ -1,6 +1,11 @@
 export { Auth } from './Auth';
 export { ConversationCard } from './ConversationCard';
 export { Layout } from './Layout';
-export { Message } from './Message';
+export { Message } from './Messages/Message';
 export { NewMessage } from './NewMessage';
 export { Users } from './Users';
+export { NewConversationBtn } from './NewConversationBtn';
+export { ConversationList } from './ConversationList';
+export { Messages } from './Messages';
+export { ConversationHeader } from './ConversationHeader';
+export { Logout } from './Logout';

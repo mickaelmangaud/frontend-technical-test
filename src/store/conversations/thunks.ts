@@ -12,13 +12,3 @@ export const addNew = createAsyncThunk(
   async (newConversation: Conversation) =>
     (await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/conversations`, { ...newConversation })).data
 );
-
-export const deleteOne = createAsyncThunk(
-  'conversations/delete',
-  async (conversationId: number) => {
-    console.log('conversationId', conversationId)
-  const {data} = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_API_URL}/conversation/${conversationId}`)
-  console.log(data);
-    return data
-  }
-);

@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { addNew, getAllConversations, deleteOne } from './thunks';
+import { addNew, getAllConversations } from './thunks';
 
 const conversationAdapter = createEntityAdapter<Conversation>({
   sortComparer: (a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp,
@@ -20,12 +20,6 @@ const conversationsSlice = createSlice({
     builder.addCase(addNew.fulfilled, conversationAdapter.addOne);
     builder.addCase(addNew.rejected, (state, action) => {
       console.log('Error in addNewConversation()', action.error)
-    });
-
-    /* delete */
-    builder.addCase(deleteOne.fulfilled, conversationAdapter.removeOne);
-    builder.addCase(deleteOne.rejected, (state, action) => {
-      console.log('Error in deleteOneConversation()', action.error)
     });
   }
 })

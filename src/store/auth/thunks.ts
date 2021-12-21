@@ -8,3 +8,8 @@ export const login = createAsyncThunk(
     return users.find((user: User) => user.nickname === username);
   }
 )
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async () => null
+);

@@ -1,16 +1,10 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
 import router, { useRouter } from 'next/router';
+import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Message, NewMessage } from '../../components/';
+import { NewMessage, Messages, ConversationHeader } from '../../components/';
 import { RootState, useAppDispatch } from '../../store';
 import { getAllMessages, addMessage } from '../../store/messages/thunks';
 import { format } from 'date-fns';
-
-const AlwaysScrollToBottom = () => {
-  const elementRef = useRef(null);
-  useEffect(() => elementRef.current.scrollIntoView());
-  return <div ref={elementRef} />;
-};
 
 export default function Conversation() {
   const [newMessage, setNewMessage] = useState<string>('');
@@ -21,11 +15,16 @@ export default function Conversation() {
   const { query } = useRouter();
   const dispatch = useAppDispatch();
   
-  const messages = useMemo(() => Object.values(entities), [entities]);
+  const messages: Message[] = useMemo(() => Object.values(entities), [entities]);
 
   const getSender = (userId: number) => 
-    Object.values(users).find(user => user.id === userId).nickname;
+    Object.values(users).find((user: User) => user.id === userId)?.nickname;
   
+  const goToConversations = () => router.push('/');
+
+  const getMessageDate = (timestamp: number) => 
+    format(new Date(timestamp), 'dd/MM/yyyy à HH:mm:ss');
+
   const addMessageToConversation = (e) => {
     e.preventDefault();
     if (newMessage !== '') {
@@ -44,16 +43,10 @@ export default function Conversation() {
     const conv: Conversation = conversations[Number(query.id)];
     if (conv) {
       return conv.recipientNickname === user.nickname 
-      ? conv.senderNickname 
-      : conv.recipientNickname;
+        ? conv.senderNickname 
+        : conv.recipientNickname;
     }
-    return ''
-  }, [messages])
-
-  const goToConversations = () => router.push('/')
-
-  const getMessageDate = (timestamp: number) => 
-    format(new Date(timestamp), 'dd/MM/yyyy à HH:mm:ss');
+  }, [messages]);
 
   useEffect(() => {
     dispatch(getAllMessages(Number(query.id)));
@@ -61,32 +54,15 @@ export default function Conversation() {
 
   return (
     <div id="conversation">
-      <div className="header">
-        <div className="back" onClick={goToConversations}>
-          &lt;
-        </div>
-        <div className="with">
-          <p>Conversation avec {getFriend}</p>
-        </div>
-      </div>
-
-      <div className="messages">
-        {messages.length > 0 ? (
-          messages.map((message) => (
-            <Message 
-              key={message.id}
-              user={user}
-              message={message}
-              getMessageDate={getMessageDate}
-              getSender={getSender}
-            />
-            ))
-            ) : (
-              <p>Aucun message dans cette conversation</p>
-            )}
-          <AlwaysScrollToBottom />
-      </div>
-
+      <ConversationHeader 
+        getFriend={getFriend}
+        goToConversations={goToConversations}
+      />
+      <Messages
+        messages={messages}
+        getMessageDate={getMessageDate}
+        getSender={getSender}
+      />
       <NewMessage
         addMessageToConversation={addMessageToConversation}
         newMessage={newMessage}
