@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
-export function Message({ message, getMessageDate, getSender }) {
+export function Message({ message, getMessageDate, getSender }: IMessageProps) {
   const { user } = useSelector((state: RootState) => state.auth);
 
   return (

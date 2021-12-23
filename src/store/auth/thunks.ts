@@ -1,15 +1,33 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { axios } from '../../utils';
+
+interface ILoginPayload {
+  username: string;
+  password: string;
+}
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (username: string, thunkAPI) => {
-    const { data: users } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users`);
-    return users.find((user: User) => user.nickname === username);
-  }
-)
+  async (credentials: ILoginPayload) => {
+    /* tout ceci est un peu tordu, et devrait être fait sur le backend */
+    const { data: users } = await axios.get(`/users`);
+    
+    const user = users.find((user: User) => 
+      user.nickname.toLowerCase() === credentials.username.toLowerCase()
+    );
 
-export const logout = createAsyncThunk(
-  'auth/logout',
-  async () => null
+    if (!user) {
+      throw new Error('Invalid credentials');
+    }
+
+    if (user.token.toLowerCase() === credentials.password.toLocaleLowerCase()) {
+      return user;
+    } else {
+      throw new Error('Invalid credentials');
+    }
+    
+  }
 );
+
+/* Pareil ici */
+export const logout = createAsyncThunk('auth/logout', async () => null);

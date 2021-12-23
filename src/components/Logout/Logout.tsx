@@ -12,6 +12,11 @@ export function Logout() {
   };
 
   return (
-    <div onClick={logUserOut}>Logout</div>
+    <button 
+      id="logout"
+      onClick={logUserOut}
+    >
+      Logout
+    </button>
   )
 }

@@ -1,5 +1,4 @@
-
-export function NewConversationBtn({ toggleContactList }) {
+export function NewConversationBtn({ toggleContactList }: INewConversationBtnProps) {
   return (
     <button
       className="new-conversation-btn"

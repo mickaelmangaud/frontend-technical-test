@@ -1,4 +1,4 @@
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NewMessage, Messages, ConversationHeader } from '../../components/';
@@ -14,6 +14,7 @@ export default function Conversation() {
   const { entities: conversations } = useSelector((state: RootState) => state.conversations);
   const { query } = useRouter();
   const dispatch = useAppDispatch();
+  const router = useRouter();
   
   const messages: Message[] = useMemo(() => Object.values(entities), [entities]);
 

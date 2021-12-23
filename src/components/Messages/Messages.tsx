@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { Message } from "..";
+import { useEffect, useRef } from 'react';
+import { Message } from '..';
 
-export function Messages({ messages, getMessageDate, getSender }) {
+export function Messages({ messages, getMessageDate, getSender }: IMessagesProps) {
   return (
     <div className="messages">
       {messages.length ? (
@@ -21,6 +21,9 @@ export function Messages({ messages, getMessageDate, getSender }) {
   );
 }
 
+/* Permet de faire scroller la conversation vers le dernier mesage automatiquement
+* trouvé sur stackoverflow
+*/
 const AlwaysScrollToBottom = () => {
   const elementRef = useRef(null);
   useEffect(() => elementRef.current.scrollIntoView());

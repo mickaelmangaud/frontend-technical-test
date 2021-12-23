@@ -1,4 +1,4 @@
-export function ConversationCard({ conversation, onClick, user }) {
+export function ConversationCard({ conversation, onClick, user }: IConversationCardProps) {
   return (
     <div
       key={conversation.id}

@@ -1,6 +1,6 @@
 import { ConversationCard } from '..';
 
-export function ConversationList({ conversations, user, goToConversation}) {
+export function ConversationList({ conversations, user, goToConversation}: IConversationListProps) {
   return (
     <div className="conversations-list">
         {conversations.length ? (

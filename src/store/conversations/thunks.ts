@@ -1,14 +1,14 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { axios } from '../../utils';
 
-export const getAllConversations = createAsyncThunk<any, number>(
+export const getAllConversations = createAsyncThunk(
   'conversatins/getAll',
-  async (recipentId) => 
-    (await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/conversations/${recipentId}`)).data
+  async (recipentId: number) => 
+    (await axios.get(`/conversations/${recipentId}`)).data
 );
 
 export const addNew = createAsyncThunk(
   'conversations/add',
   async (newConversation: Conversation) =>
-    (await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/conversations`, { ...newConversation })).data
+    (await axios.post(`/conversations`, { ...newConversation })).data
 );

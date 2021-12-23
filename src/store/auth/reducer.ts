@@ -8,22 +8,32 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => ({
+  reducers: {
+    resetError: state => ({ ...state, error: null }),
+  },
+  extraReducers: builder => {
+    builder.addCase(login.fulfilled, (_, action) => ({
       user: action.payload,
       isAuthenticated: true,
-      error: null
-    }))
+      error: null,
+    }));
 
-    builder.addCase(logout.fulfilled, (state, action) => ({
+    builder.addCase(login.rejected, (_, action) => ({
       user: null,
       isAuthenticated: false,
-      error: null
-    }))
+      error: action.error.message,
+    }));
+
+    builder.addCase(logout.fulfilled, () => ({
+      user: null,
+      isAuthenticated: false,
+      error: null,
+    }));
   },
 });
 
 export const authReducer = authSlice.reducer;
+
+export const { resetError } = authSlice.actions;

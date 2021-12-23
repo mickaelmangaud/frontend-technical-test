@@ -12,13 +12,13 @@ const conversationsSlice = createSlice({
   extraReducers: builder => {
     /* get */
     builder.addCase(getAllConversations.fulfilled, conversationAdapter.setAll);
-    builder.addCase(getAllConversations.rejected, (state, action) => {
+    builder.addCase(getAllConversations.rejected, (_, action) => {
       console.log('Error in getAllConversation()', action.error)
     });
 
     /* post */
     builder.addCase(addNew.fulfilled, conversationAdapter.addOne);
-    builder.addCase(addNew.rejected, (state, action) => {
+    builder.addCase(addNew.rejected, (_, action) => {
       console.log('Error in addNewConversation()', action.error)
     });
   }

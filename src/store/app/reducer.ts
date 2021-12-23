@@ -8,7 +8,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    toggleUsersDisplayed: (state, action) => ({ ...state, areUsersDisplayed: !state.areUsersDisplayed })
+    toggleUsersDisplayed: (state) => ({ ...state, areUsersDisplayed: !state.areUsersDisplayed })
   },
 });
 

@@ -1,4 +1,4 @@
-export function ConversationHeader({ goToConversations, getFriend }) {
+export function ConversationHeader({ goToConversations, getFriend }: IConversationHeaderProps) {
   return (
     <div className="header">
       <div className="back" onClick={goToConversations}>

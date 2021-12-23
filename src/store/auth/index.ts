@@ -1,1 +1,2 @@
-export { authReducer } from './reducer';
+export { authReducer, resetError } from './reducer';
+export { login } from './thunks';

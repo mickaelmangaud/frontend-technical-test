@@ -1,0 +1,3 @@
+interface INewConversationBtnProps {
+  toggleContactList: () => void;
+}

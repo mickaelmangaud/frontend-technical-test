@@ -47,6 +47,62 @@
       "recipientId": 3,
       "recipientNickname": "Patrick",
       "lastMessageTimestamp": 1640111776003
+    },
+    {
+      "id": 1640252616546,
+      "senderId": 3,
+      "senderNickname": "Patrick",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": 1640252616546
+    },
+    {
+      "id": 1640253938510,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 3,
+      "recipientNickname": "Patrick",
+      "lastMessageTimestamp": 1640253938510
+    },
+    {
+      "id": 1640254034908,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 3,
+      "recipientNickname": "Patrick",
+      "lastMessageTimestamp": 1640254034908
+    },
+    {
+      "id": 1640254097992,
+      "senderId": 1,
+      "senderNickname": "Thibaut",
+      "recipientId": 4,
+      "recipientNickname": "Elodie",
+      "lastMessageTimestamp": 1640254097992
+    },
+    {
+      "id": 1640256037711,
+      "senderId": 4,
+      "senderNickname": "Elodie",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": 1640256037711
+    },
+    {
+      "id": 1640256127227,
+      "senderId": 4,
+      "senderNickname": "Elodie",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": 1640256127227
+    },
+    {
+      "id": 1640257652859,
+      "senderId": 4,
+      "senderNickname": "Elodie",
+      "recipientId": 2,
+      "recipientNickname": "Jeremie",
+      "lastMessageTimestamp": 1640257652859
     }
   ],
   "messages": [
@@ -1750,28 +1806,105 @@
       "authorId": 1,
       "timestamp": 1640111781683,
       "body": "Bonjour Pat"
+    },
+    {
+      "id": 1640252619888,
+      "conversationId": 1640252616546,
+      "authorId": 3,
+      "timestamp": 1640252619888,
+      "body": "hehe"
+    },
+    {
+      "id": 1640254037788,
+      "conversationId": 1640254034908,
+      "authorId": 1,
+      "timestamp": 1640254037788,
+      "body": "fsqfs"
+    },
+    {
+      "id": 1640254264842,
+      "conversationId": 1640111754754,
+      "authorId": 1,
+      "timestamp": 1640254264842,
+      "body": "dqlkjqksjdsq"
+    },
+    {
+      "id": 1640254266477,
+      "conversationId": 1640111754754,
+      "authorId": 1,
+      "timestamp": 1640254266477,
+      "body": "dqlkjqksjdsqklgjmdfgjksdfgd"
+    },
+    {
+      "id": 1640254270636,
+      "conversationId": 1640111754754,
+      "authorId": 1,
+      "timestamp": 1640254270636,
+      "body": "jhfkjhgfd"
+    },
+    {
+      "id": 1640254273127,
+      "conversationId": 1640111754754,
+      "authorId": 1,
+      "timestamp": 1640254273127,
+      "body": "jhfkjhgfdldjgjdflgjds"
+    },
+    {
+      "id": 1640254275082,
+      "conversationId": 1640111754754,
+      "authorId": 1,
+      "timestamp": 1640254275082,
+      "body": "jhfkjhgfdldjgjdflgjdslsdhfkqjsdhfjkqdgfd"
+    },
+    {
+      "id": 1640256028514,
+      "conversationId": 3,
+      "authorId": 4,
+      "timestamp": 1640256028514,
+      "body": "Bonjour Elodie !"
+    },
+    {
+      "id": 1640256040981,
+      "conversationId": 1640256037711,
+      "authorId": 4,
+      "timestamp": 1640256040981,
+      "body": "Coucou"
+    },
+    {
+      "id": 1640256130264,
+      "conversationId": 1640256127227,
+      "authorId": 4,
+      "timestamp": 1640256130264,
+      "body": "Bonjour"
+    },
+    {
+      "id": 1640257656523,
+      "conversationId": 1640257652859,
+      "authorId": 4,
+      "timestamp": 1640257656524,
+      "body": "Hello Elo"
     }
   ],
   "users": [
     {
       "id": 1,
       "nickname": "Thibaut",
-      "token": "xxxx"
+      "token": "thibaut"
     },
     {
       "id": 2,
       "nickname": "Jeremie",
-      "token": "xxxx"
+      "token": "jeremie"
     },
     {
       "id": 3,
       "nickname": "Patrick",
-      "token": "xxxx"
+      "token": "patrick"
     },
     {
       "id": 4,
       "nickname": "Elodie",
-      "token": "xxxx"
+      "token": "elodie"
     }
   ]
 }

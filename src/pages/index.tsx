@@ -21,7 +21,7 @@ export default function Conversations() {
   );
 
   const toggleContactList = () =>
-    dispatch(toggleUsersDisplayed({}));
+    dispatch(toggleUsersDisplayed());
 
   const goToConversation = (conversationId: number) =>
     router.push(`/conversations/${conversationId}`);

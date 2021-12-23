@@ -1,17 +1,30 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { login } from '../../store/auth/thunks'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { login, resetError } from '../../store/auth';
 
 export function Auth() {
   const dispatch = useDispatch();
-  const [nickname, setNickname] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const { error } = useSelector((state:RootState) => state.auth);
 
-  const loginUser = (e) => {
+  const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(nickname));
-  }
+    dispatch(login({username, password}));
+  };
 
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(resetError());
+    if (e.currentTarget.name === "username") {
+      setUsername(e.currentTarget.value);
+    }
+
+    if (e.currentTarget.name === "password") {
+      setPassword(e.currentTarget.value);
+    }
+  }
+  
   return (
     <div id="auth">
       <form onSubmit={loginUser}>
@@ -19,16 +32,21 @@ export function Auth() {
         <input
           type="text"
           placeholder="Nickname..."
-          value={nickname}
-          onChange={(e) => setNickname(e.currentTarget.value)}
+          value={username}
+          name="username"
+          onChange={onInputChange}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password... "
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          name="password"
+          onChange={onInputChange}
         />
         <button type="submit">LOGIN</button>
+        {error && (
+          <p className="error">{error}</p>
+        )}
       </form>
     </div>
   )

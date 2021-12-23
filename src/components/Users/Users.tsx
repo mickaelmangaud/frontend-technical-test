@@ -18,7 +18,7 @@ export function Users() {
   );
 
   const toggleUsersAreDisplayed = () => 
-    dispatch(toggleUsersDisplayed({}));
+    dispatch(toggleUsersDisplayed());
 
   const addConversation = async (userId: number) => {
     toggleUsersAreDisplayed();
