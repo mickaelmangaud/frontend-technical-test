@@ -8,8 +8,8 @@ import { format } from 'date-fns';
 
 export default function Conversation() {
   const [newMessage, setNewMessage] = useState<string>('');
-  const { entities } = useSelector((state: RootState) => state.messages);
   const { user } = useSelector((state: RootState) => state.auth);
+  const { entities } = useSelector((state: RootState) => state.messages);
   const { entities: users } = useSelector((state: RootState) => state.users);
   const { entities: conversations } = useSelector((state: RootState) => state.conversations);
   const { query } = useRouter();

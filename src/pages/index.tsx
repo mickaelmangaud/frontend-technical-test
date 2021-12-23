@@ -13,8 +13,6 @@ export default function Conversations() {
   const { user } = useSelector((state: RootState) => state.auth);
   const { entities } = useSelector((state: RootState) => state.conversations);
 
-  console.log(Object.values(entities).sort((a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp))
-
   const conversations = useMemo(
     () => Object.values(entities).sort((a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp),
     [entities]
