@@ -38,6 +38,7 @@ export default function Conversation() {
         body: newMessage
       }));
     }
+    setNewMessage('');
   }
 
   const getFriend: string = useMemo(() => {
